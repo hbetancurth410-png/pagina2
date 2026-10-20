@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tarealand</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="card side">
+    <div class="logo">
+      <div class="logo-ico"><i></i><i></i><i></i><i></i></div>
+      <div><b>Tarealand</b><small>Organiza, entrega, aprende</small></div>
+    </div>
+    <nav class="nav">
+      <a href="#" class="on">🏠 Inicio</a>
+      <a href="#">📋 Mis tareas</a>
+      <a href="#form">📤 Entregar tarea</a>
+      <a href="#">📅 Calendario</a>
+      <a href="#">💬 Mensajes <span class="badge">3</span></a>
+      <a href="#">⭐ Calificaciones</a>
+      <a href="#">📁 Recursos</a>
+      <a href="#">⚙️ Configuración</a>
+    </nav>
+    <div class="spacer"></div>
+    <div class="me">
+      <div class="avatar">CM</div>
+      <div><b>Camila M.</b><small>camila.molina@ucd.edu</small></div>
+    </div>
+    <div class="prog">
+      <div class="top"><span>Tu progreso</span><span>Nivel 4</span></div>
+      <div class="bar"><span></span></div>
+      <div style="text-align:right;font-weight:700;margin-top:3px">75%</div>
+    </div>
+  </aside>
+
+  <!-- FORMULARIO -->
+  <main class="card" id="form">
+    <h1>¡Bienvenida, Camila! 👋</h1>
+    <p class="sub">Aquí puedes entregar tus tareas y ver su estado.</p>
+
+    <div class="sec-t">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg>
+      Entregar nueva tarea
+    </div>
+    <p class="sub" style="margin:2px 0 0">Completa el formulario para enviar tu tarea.</p>
+
+    <form id="taskForm" novalidate>
+      <label for="subject">Asignatura</label>
+      <select id="subject" class="in">
+        <option value="matematicas">Matemáticas</option>
+        <option value="ciencias">Ciencias naturales</option>
+        <option value="historia">Historia</option>
+        <option value="lenguaje">Lenguaje</option>
+      </select>
+
+      <label for="title">Título de la tarea</label>
+      <input id="title" class="in" type="text" placeholder="Ej: Área de un rectángulo">
+
+      <label for="desc">Descripción (opcional)</label>
+      <textarea id="desc" class="in" placeholder="Actividad sobre cómo hallar el área de un rectángulo utilizando la fórmula A = b × h"></textarea>
+
+      <label>Archivo</label>
+      <div class="drop" id="drop" tabindex="0" role="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1-.5-7.97A6 6 0 0 1 18 9a4.5 4.5 0 0 1-.5 9H7zM12 12v6M9 14l3-3 3 3"/></svg>
+        Arrastra y suelta tu archivo aquí<br>o haz clic para buscar
+      </div>
+      <input type="file" id="fileInput" hidden>
+      <div class="file" id="fileBox">
+        <span class="pdf" id="ext">PDF</span><span id="fname"></span><span class="sz" id="fsize"></span>
+        <button type="button" id="rmFile" aria-label="Quitar archivo">✕</button>
+      </div>
+
+      <div class="row">
+        <div><label for="date">Fecha de entrega</label><input id="date" class="in" type="date"></div>
+        <div><label for="time">Hora de entrega</label><input id="time" class="in" type="time" value="23:59"></div>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn sec" id="clear">🗑 Limpiar</button>
+        <button type="submit" class="btn pri">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg>
+          Entregar tarea
+        </button>
+      </div>
+      <p class="msg" id="msg" role="status"></p>
+    </form>
+  </main>
+
+  <!-- LISTA DE TAREAS -->
+  <section class="card tasks">
+    <div class="top-right">
+      <button class="bell" aria-label="Notificaciones">🔔</button>
+      <div class="avatar">CM</div>
+    </div>
+    <div class="t-head">
+      <h2>Mis tareas</h2>
+      <button class="btn pri" id="newBtn" style="padding:7px 14px">+ Nueva tarea</button>
+    </div>
+    <div class="tabs" id="tabs">
+      <button class="tab on" data-f="todas">Todas</button>
+      <button class="tab" data-f="pendiente">Pendientes</button>
+      <button class="tab" data-f="entregada">Entregadas</button>
+      <button class="tab" data-f="atrasada">Atrasadas</button>
+    </div>
+    <div id="list"></div>
+    <div class="pager" id="pager"></div>
+  </section>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
